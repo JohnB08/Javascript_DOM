@@ -19,3 +19,14 @@
 
         Knappen textswapper skal kunne hente teksten i inputfeltet text input, og legge det inn som output.textContent.
 */
+
+
+/* Vi starter med å hente inn en referanse til output, colorswapper, textswapper og textinput i toppen av js filen: */
+
+const colorButton = document.getElementById("colorswapper");
+const outputText = document.getElementById("output");
+const textInput = document.getElementById("textinput");
+const textSwapper = document.querySelector("#textswapper");
+
+/* Her kan vi vise at querySelector lar oss hente basert på css tags, mens getElementBy funksjoenen bare tar inn navnet direkte */
+
