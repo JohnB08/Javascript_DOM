@@ -28,6 +28,9 @@ const outputText = document.getElementById("output");
 const textInput = document.getElementById("textinput");
 const textSwapper = document.querySelector("#textswapper");
 
+const root = document.documentElement;
+const bgColor = getComputedStyle(root).getPropertyValue("--bgColor");
+
 /* Her kan vi vise at querySelector lar oss hente basert på css tags, mens getElementBy funksjoenen bare tar inn navnet direkte */
 
 /* Vi må så lage en funksjon som skal kunne gjøre følgende:
@@ -99,4 +102,44 @@ textSwapper.addEventListener("click", ()=>
 
 La oss endre på eventlisteneren over, og legge på en "guard clause" som passer på at hvis input er tom, så skjer ingenting.
 vi "returnerer" ut av funksjonen vår tidlig, for å forsikre oss om at ingenting blir overskrevet hvis textinput er tom. 
+*/
+
+
+/* BONUS! */
+
+
+/* Fikk et spørsmål fra en deltager:
+        "Når vi genererer en random farge, kan vi forsikre oss om at fargen alltid er en god kontrast med bakgrunnsfargen vi har?" 
+        
+    La oss se om vi klarer å tenke ut en løsning for dette:
+    
+    Fargekontraster kan ekstremt enkelt forklares som følgende:
+
+    Ta to fargeverdier du vil se kontrasten mellom:
+    #88f57c
+    #c930cd
+    splitt opp fargene slik at du får ut red, green og blue verdiene for seg selv:
+    {
+        r: [88, c9],
+        g: [f5, 30],
+        b: [7c, cd]
+    }
+    
+    for hver av fargene, ta absoluttverdien av ene minus den andre, og sum sammen resultatet:
+
+    sum = Math.abs(88 - c9) + Math.abs(f5 - 30) + Math.abs(7c - cd)
+
+    jo høyere summen din er, jo lengre er "avstanden" mellom fargene dine, jo høyere er kontrasten mellom de. 
+    En tommelfingerregel er at "avstanden" bør være rundt midtpunktet av maksverdien for farger.
+     Siden hver farge kan ha en maks verdi på 255, og ish midpunktet til hver farge er 128, kan vi si at minste "avstand" for god 
+     kontrast er ca 384,
+     vi kan runde dette ned for å gi oss litt mer å jobbe med ved å si en minste value på 350. 
+     
+
+     For å kunne jobbe med dette bør vi også hente inn en referanse til bakgrunnsfargen på siden.
+
+     Vi har heldigvis laget den som en css variabel i style.css filen vår, og vi kan hente den fra root via en referanse til root dokumentet,
+     så en referanse til stylesheeten til root dokumentet (se linje 31 og 32.)
+
+     
 */
