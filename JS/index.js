@@ -90,5 +90,12 @@ textInput, og sette det lik outputText.textContent */
 
 textSwapper.addEventListener("click", ()=>
 {
+    if (textInput.value === null || textInput.value === "") return;
     outputText.textContent = textInput.value;
 })
+
+/* Ops! vi bør kanskje passe på at textInput.value faktisk har en verdi, vi vil jo ikke at vi ender opp med en tom output text!
+
+La oss endre på eventlisteneren over, og legge på en "guard clause" som passer på at hvis input er tom, så skjer ingenting.
+vi "returnerer" ut av funksjonen vår tidlig, for å forsikre oss om at ingenting blir overskrevet hvis textinput er tom. 
+*/
