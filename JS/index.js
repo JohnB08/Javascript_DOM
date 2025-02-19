@@ -54,11 +54,12 @@ const textSwapper = document.querySelector("#textswapper");
 function randomColor()
 {
 
-    let color = "#" + (Math.random() * 0xffffff).toString(16).padStart(6,"0");
+    let color = "#" + Math.trunc((Math.random() * 0xffffff)).toString(16).padStart(6,"0");
 
     /* La oss gå gjennom denne funksjonen del for del:
     
         "#" + : Vi starter med dette, siden alle fargekodene i css starter med en # for å markere at dette er en hexadesimal verdi. vår fargekode må gjøre det samme.
+        Math.trunc() passer på at vi ikke får noen desimalverdier ut av den random tallgeneratoren vår.
         (Math.random() * 0xffffff) Her lager vi et random tall mellom 0 og maks verdien til en fargekode i css.
         .toString(16) her gjør vi tallet vårt om til tekst. vi gir funksjonen tallet 16 for å fortelle at tallet som skal gjøres om til tekst er et heksadesimalt tall.
         .padStart(6, "0") sier at hvis lengden på teksten generert er mindre enn 6, legg til 0 i starten til lengden blir 6.
