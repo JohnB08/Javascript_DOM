@@ -141,5 +141,46 @@ vi "returnerer" ut av funksjonen vår tidlig, for å forsikre oss om at ingentin
      Vi har heldigvis laget den som en css variabel i style.css filen vår, og vi kan hente den fra root via en referanse til root dokumentet,
      så en referanse til stylesheeten til root dokumentet (se linje 31 og 32.)
 
-     
+
+    La oss så lag en ny funksjon, som tar inn to fargeverdier som css strenger
+    eksempel på css streng: #88f57c
+    og regner ut avstanden mellom de, og gir oss en true eller false om avstanden er god, la oss kalle den calculateDistance()
+    Vi trenger også en hjelpefunksjon som kan ta en streng, og gjøre den om til et array med tre fargeverdier. la oss kalle den convertStringToColorArray()
 */
+
+function convertStringToColorArray(str)
+{
+    if (str.length != 7) return; //her passer vi på at strengen som kommer inn skal ha lengden 7, (# så seks tall).
+    let strNoHashtag = str.slice(1,6); //her passer vi på å fjerne # fra starten av strengen vår.
+    let colorArr = []; //vi definerer så et tomt array som skal holde alle fargene vi henter ut fra strengen vår.
+    for (let i = 0; i < strNoHashtag.length; i+=2) //her definerer vi en loop som skal loope gjennom teksten vår, legg merke til at vi hopper 2 om gangen for å hoppe fra en fargekode til neste. 
+    {
+        colorArr.push(Number.parseInt(strNoHashtag.slice(i, i+2), 16)); //her henter vi ut 2 karaterer fra strNoHashtag, og gjør de om til et tall, legg merke til at vi legger med tallet 16 til parseInt funksjonen for å fortelle at dette er et heksadesimalt tall. 
+    }
+    return colorArr; //vi returnerer så fargeverdiene.
+
+}
+
+function calculateDistance(col1, col2)
+{
+    let colArr1 = convertStringToColorArray(col1); //vi gjør første teksten om til et farge array.
+    let colArr2 = convertStringToColorArray(col2); //Vi gjør andre stringen om til et farge array.
+    console.log(colArr1);
+    console.log(colArr2);
+    let sum = 0;
+    for(let i = 0; i<colArr1.length; i++)
+    {
+        sum += Math.abs(colArr1[i] - colArr2[i])//Her tar vi absoluttverdien av hvert element i hver av arrayene og summerer de sammen. 
+    }
+    console.log(sum);
+    return sum > 350; //her returnerer vi true eller false basert på om summen er større enn 350. hvis den er større får vi true, hvis den er mindre får vi false. 
+}
+
+/* La oss teste vår calculate distance funksjon:*/
+let randcol = randomColor();
+console.log(randcol);
+console.log(bgColor);
+console.log(calculateDistance(bgColor, randcol)); 
+
+/* Hvis den viser false mye, så kan man prøve å endre --bgColor i css filen, for den er en ganske vanskelig farge å finne kontraster til.
+ hvis man gjør den lysere eller mørkere er det lettere å generere kontraster */
