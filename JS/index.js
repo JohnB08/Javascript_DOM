@@ -59,6 +59,8 @@ function randomColor()
 
     let color = "#" + Math.trunc((Math.random() * 0xffffff)).toString(16).padStart(6,"0");
 
+    /* Her ser du et eksempel på rekursjon, dvs funksjonen kjører seg selv på nytt, hvis distansen er for liten.  */
+    if (!calculateDistance(color, bgColor)) return randomColor();
     /* La oss gå gjennom denne funksjonen del for del:
     
         "#" + : Vi starter med dette, siden alle fargekodene i css starter med en # for å markere at dette er en hexadesimal verdi. vår fargekode må gjøre det samme.
@@ -184,3 +186,8 @@ console.log(calculateDistance(bgColor, randcol));
 
 /* Hvis den viser false mye, så kan man prøve å endre --bgColor i css filen, for den er en ganske vanskelig farge å finne kontraster til.
  hvis man gjør den lysere eller mørkere er det lettere å generere kontraster */
+
+ /* Vi kan nå oppdatere vår randomColor funksjon, for å bare returere en random farge, hvis kontrasten mellom de er stor nok! */
+
+ /* Vi kan oppnå dette via recursion, aka at funksjonen kjører seg selv på nytt, til den har oppnådd det den ønsker. 
+    Se på linje 61 for et eksempel på dette via While.*/
