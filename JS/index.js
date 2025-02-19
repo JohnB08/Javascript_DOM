@@ -23,7 +23,7 @@
 
 /* Vi starter med å hente inn en referanse til output, colorswapper, textswapper og textinput i toppen av js filen: */
 
-const colorButton = document.getElementById("colorswapper");
+const colorSwapper = document.getElementById("colorswapper");
 const outputText = document.getElementById("output");
 const textInput = document.getElementById("textinput");
 const textSwapper = document.querySelector("#textswapper");
@@ -70,3 +70,17 @@ function randomColor()
 /* La oss teste randomcolor funksjonen vår, ved å console.log den ut. */
 
 console.log(randomColor());
+
+/* Vi har nå en fungerende farge. Vi kan nå lage en EventListener på colorswapper for å sette color til output lik denne random color metoden vår.  */
+
+colorSwapper.addEventListener("click", ()=>{
+    outputText.style.color = randomColor();
+})
+
+/* Hva skjer her?
+    
+        Vi sier til js, at den skal lytte etter et event som skjer på colorSwapper,
+        spesifikt skal det lytte på et "click" event.
+        Når det eventet skjer, skal den kjøre følgende funksjon:
+            outputText.Style.color = randomColor();
+*/
