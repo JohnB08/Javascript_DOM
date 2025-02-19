@@ -54,7 +54,7 @@ const textSwapper = document.querySelector("#textswapper");
 function randomColor()
 {
 
-    let color = "#" + (Math.random() * 0xffffff).toString(16).padStart(6,"0");
+    let color = "#" + Math.trunc((Math.random() * 0xffffff)).toString(16).padStart(6,"0");
 
     /* La oss gå gjennom denne funksjonen del for del:
     
