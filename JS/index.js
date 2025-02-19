@@ -78,9 +78,17 @@ colorSwapper.addEventListener("click", ()=>{
 })
 
 /* Hva skjer her?
-    
+
         Vi sier til js, at den skal lytte etter et event som skjer på colorSwapper,
         spesifikt skal det lytte på et "click" event.
         Når det eventet skjer, skal den kjøre følgende funksjon:
             outputText.Style.color = randomColor();
 */
+
+/* Vi kan også bruke en click event på textswapper knappen, for å hente inn verdien (value) til 
+textInput, og sette det lik outputText.textContent */
+
+textSwapper.addEventListener("click", ()=>
+{
+    outputText.textContent = textInput.value;
+})
